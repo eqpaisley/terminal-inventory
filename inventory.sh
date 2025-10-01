@@ -42,19 +42,18 @@ jq -n \
   --arg mem_available_kb "$MEM_AVAILABLE" \
   --arg disk_total_gb "$DISK_TOTAL" \
   --arg disk_available_gb "$DISK_AVAILABLE" \
-  '{
+    '{
     host: $host,
     generated: $generated,
     running_services: $running_services,
-    user_cron: $user_cron,
-    system_cron: $system_cron,
     docker_containers: $docker_containers,
-  system_stats: {
-    cpu_count: $cpu_count|tonumber,
-    mem_total_kb: $mem_total_kb|tonumber,
-    mem_available_kb: $mem_available_kb|tonumber,
-    disk_total_gb: $disk_total_gb|tonumber,
-    disk_available_gb: $disk_available_gb|tonumber
-  }
-
+    system_cron: $system_cron,
+    user_cron: $user_cron,
+    system_stats: {
+      cpu_count: ($cpu_count|tonumber),
+      mem_total_kb: ($mem_total_kb|tonumber),
+      mem_available_kb: ($mem_available_kb|tonumber),
+      disk_total_gb: ($disk_total_gb|tonumber),
+      disk_available_gb: ($disk_available_gb|tonumber)
+    }
   }'
